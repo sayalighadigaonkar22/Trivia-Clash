@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trivia Game</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Trivia Game</h1>
+        <form id="playerForm">
+            <label for="player1">Player 1 Name:</label>
+            <input type="text" id="player1" required>
+            <label for="player2">Player 2 Name:</label>
+            <input type="text" id="player2" required>
+            <button type="button" id="startButton">Start Game</button>
+        </form>
+
+        <div id="categorySelection" class="hidden">
+            <label for="category">Choose a Category:</label>
+            <select id="category"></select>
+            <button type="button" id="startQuizButton">Start Quiz</button>
+        </div>
+
+        <div id="questionSection" class="hidden">
+            <h3 id="question"></h3>
+            <div id="answers"></div>
+            <button type="button" id="nextButton">Next</button>
+        </div>
+
+        <div id="endSection" class="hidden">
+            <h2 id="result"></h2>
+            <button type="button" id="restartButton">Restart</button>
+        </div>
+    </div>
+    
+    <script src="./script.js"></script>
+</body>
+</html>
