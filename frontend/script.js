@@ -18,22 +18,31 @@ document.addEventListener('DOMContentLoaded', function () {
     let scores = { player1: 0, player2: 0 };
     let gameData = { player1: '', player2: '', category: '' };
 
-    // Fetch categories when the page loads
-    async function fetchCategories() {
-        try {
-            const response = await fetch('http://localhost:5000/api/categories');
-            const data = await response.json();
-            const categories = data.categories;
+    // Static categories (no API call)
+    const categories = [
+        { id: '1', name: 'General Knowledge' },
+        { id: '2', name: 'Science' },
+        { id: '3', name: 'History' }
+    ];
 
-            categories.forEach(category => {
-                const option = document.createElement('option');
-                option.value = category.id;
-                option.textContent = category.name;
-                categorySelect.appendChild(option);
-            });
-        } catch (error) {
-            console.error('Error fetching categories:', error);
-        }
+    // Function to populate category dropdown
+    function populateCategories() {
+        categorySelect.innerHTML = ''; // Clear previous categories
+
+        // Add a default "Select category" option
+        const defaultOption = document.createElement('option');
+        defaultOption.textContent = 'Select a Category';
+        defaultOption.disabled = true;
+        defaultOption.selected = true;
+        categorySelect.appendChild(defaultOption);
+
+        // Populate dropdown with static categories
+        categories.forEach(category => {
+            const option = document.createElement('option');
+            option.value = category.id;
+            option.textContent = category.name;
+            categorySelect.appendChild(option);
+        });
     }
 
     // Handle the start button click
@@ -52,14 +61,15 @@ document.addEventListener('DOMContentLoaded', function () {
         playerForm.classList.add('hidden');
         categorySelection.classList.remove('hidden');
         
-        fetchCategories();
+        // Populate categories on form load
+        populateCategories();
     });
 
-    // Handle category selection
+    // Handle category selection and start the quiz
     startQuizButton.addEventListener('click', function () {
         const categoryId = categorySelect.value;
         
-        if (!categoryId) {
+        if (!categoryId || categoryId === 'Select a Category') {
             alert('Please select a category');
             return;
         }
@@ -73,24 +83,26 @@ document.addEventListener('DOMContentLoaded', function () {
         fetchQuestions(categoryId);
     });
 
-    // Fetch questions from API
+    // Fetch questions from API (mock data)
     async function fetchQuestions(categoryId) {
-        try {
-            const response = await fetch(`http://localhost:5000/api/games/start`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    playerIds: ['player1', 'player2'],  // Use actual player IDs from your backend
-                    category: { id: categoryId },
-                    difficulty: 'easy',  // Adjust difficulty as needed
-                })
-            });
-            const data = await response.json();
-            questions = data.questions;
-            displayQuestion();
-        } catch (error) {
-            console.error('Error fetching questions:', error);
-        }
+        // Mock data: static questions for demonstration purposes
+        const mockQuestions = [
+            {
+                question: 'What is the capital of France?',
+                choices: ['Paris', 'London', 'Berlin', 'Rome'],
+                correctIndex: 0,
+                difficulty: 'easy'
+            },
+            {
+                question: 'Who invented the lightbulb?',
+                choices: ['Albert Einstein', 'Nikola Tesla', 'Thomas Edison', 'Isaac Newton'],
+                correctIndex: 2,
+                difficulty: 'medium'
+            }
+        ];
+
+        questions = mockQuestions;
+        displayQuestion();
     }
 
     // Display current question
