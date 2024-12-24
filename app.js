@@ -3,12 +3,16 @@ const connectDB = require('./config/db');
 const playerRoutes = require('./routes/playerRoutes');
 const gameRoutes = require('./routes/gameRoutes');
 const categoryRoutes = require('./routes/categoryRoutes');
+const cors = require('cors');
 
 require('dotenv').config();
 connectDB();
 
 const app = express();
 app.use(express.json());
+app.use(cors());
+
+
 
 app.use('/api/players', playerRoutes);
 app.use('/api/games', gameRoutes);

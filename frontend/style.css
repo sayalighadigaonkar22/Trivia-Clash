@@ -6,88 +6,63 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    background: #f4f4f4;
+    color: #333;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
 
-#game-container {
-    background-color: #fff;
-    padding: 20px;
+.game-container {
+    background: white;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
     width: 400px;
-}
-
-h1 {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
-    margin-bottom: 20px;
 }
 
-.section {
+h1, h2 {
     margin-bottom: 20px;
 }
 
 input, select, button {
-    width: 100%;
+    width: 80%;
     padding: 10px;
-    margin-top: 10px;
-    border: 1px solid #ccc;
+    margin: 10px auto;
     border-radius: 5px;
+    border: 1px solid #ccc;
+    display: block;
+    text-align: center;
 }
 
 button {
-    background-color: #4CAF50;
+    background: #4CAF50;
     color: white;
     cursor: pointer;
+    border: none;
 }
 
 button:hover {
-    background-color: #45a049;
+    background: #45a049;
 }
 
-#answer-options button {
-    margin-top: 10px;
-}
-
-#results {
-    text-align: center;
-}
-
-#results button {
-    background-color: #ff6347;
-}
-
-.hidden {
+#game-screen, #game-over {
     display: none;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    text-align: center;
+#game-over {
+    background: #fff3cd;
+    border-radius: 10px;
+    padding: 20px;
 }
 
-.container {
-    width: 80%;
-    margin: 0 auto;
+#restart-game-btn {
+    background: #007bff;
+    color: white;
 }
 
-input, select {
-    padding: 10px;
-    margin: 10px 0;
-    width: 60%;
-}
-
-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-button:disabled {
-    cursor: not-allowed;
-    background-color: #ccc;
+#restart-game-btn:hover {
+    background: #0056b3;
 }

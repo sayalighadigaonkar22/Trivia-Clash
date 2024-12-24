@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-// Define the schema for questions
 const questionSchema = new mongoose.Schema({
     question: { type: String, required: true },
     correct_answer: { type: String, required: true },
@@ -10,19 +9,18 @@ const questionSchema = new mongoose.Schema({
     answeredBy: { type: mongoose.Schema.Types.ObjectId, ref: 'Player', default: null }
 });
 
-// Define the schema for games
 const gameSchema = new mongoose.Schema({
     players: [{
-        type: mongoose.Schema.Types.ObjectId, // Use ObjectId to reference Player model directly
-        ref: 'Player', // Reference to Player model
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Player',
         required: true
     }],
     category: {
-        id: { type: Number, required: true }, // Category ID from trivia API
-        name: { type: String, required: true } // Category name
+        id: { type: Number, required: true }, 
+        name: { type: String, required: true } 
     },
     difficulty: { type: String, required: true },
-    questions: [questionSchema], // Embed the question schema
+    questions: [questionSchema], 
     currentQuestionIndex: { type: Number, default: 0 },
     currentTurn: { type: Number, default: 0 },
     status: {

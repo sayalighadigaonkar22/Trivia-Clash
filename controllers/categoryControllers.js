@@ -1,5 +1,4 @@
 // const fetch = require('node-fetch');
-
 let cachedCategories = [];
 
 const fetchCategories = async () => {
@@ -12,11 +11,8 @@ const fetchCategories = async () => {
         console.error('Failed to fetch categories:', error.message);
     }
 };
-
-// Fetch categories when the server starts
 fetchCategories();
 
-// Controller to get categories
 const getCategories = (req, res) => {
     res.json({ categories: cachedCategories });
 };
